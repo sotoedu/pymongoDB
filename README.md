@@ -82,7 +82,7 @@ It looks like you are trying to access MongoDB over HTTP on the native driver po
 ------------------------------
 
 
-$ pip3 install pymongo==3.4.0v
+// $ pip3 install pymongo==3.4.0
 
 $ nano pymongoex.py
 
