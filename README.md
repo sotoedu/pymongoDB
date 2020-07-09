@@ -141,7 +141,7 @@ $ nano app.py
     from pymongo import MongoClient
 
     # declare globals for PyMongo's client host
-    DOMAIN = "192.168.100.40"
+    DOMAIN = "localhost"
     MONGO_PORT = 27017
     FLASK_PORT = 5000
 
@@ -253,6 +253,6 @@ $ nano app.py
 $ python3 app.py
 
 
-Just navigate to http://192.168.100.40:5000/api/v1/docs/ 
+Just navigate to http://localhost:5000/api/v1/docs/ 
 
 
