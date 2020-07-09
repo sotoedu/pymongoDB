@@ -249,6 +249,7 @@ $ nano app.py
 
 
 //  $  flask run --host=192.168.100.40
+
 $ python3 app.py
 
 
