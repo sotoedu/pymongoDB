@@ -248,7 +248,8 @@ $ nano app.py
 
 
 
-$  flask run --host=192.168.100.40
+//  $  flask run --host=192.168.100.40
+$ python3 app.py
 
 
 Just navigate to http://192.168.100.40:5000/api/v1/docs/ 
