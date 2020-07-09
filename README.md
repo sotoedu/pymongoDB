@@ -123,3 +123,134 @@ $ python3 pymongoex.py
 
 
 
+---------------------------
+
+$ mkdir flask-mongodb-raspberry && cd flask-mongodb-raspberry
+
+$ touch app.py
+
+$ nano app.py
+
+    #!/usr/bin/env python3
+    #-*- coding: utf-8 -*-
+
+    # import the Flask library
+    from flask import Flask
+
+    # import the MongoClient class
+    from pymongo import MongoClient
+
+    # declare globals for PyMongo's client host
+    DOMAIN = "192.168.100.40"
+    MONGO_PORT = 27017
+    FLASK_PORT = 5000
+
+    # create new app instance using Flask class constructor
+    mongo_app = Flask(__name__)
+
+    def get_mongo_docs(arg=''):
+
+        # declare an empty dict for the MongoDB documents
+        documents = {}
+
+        try:
+            # create a new client instance of MongoClient
+            client = MongoClient(
+                host = [str(DOMAIN) + ":" + str(MONGO_PORT)]
+            )
+
+            # calling server_info() will raise an exception if client timeout
+            print ("\nserver_info():", client.server_info()["versionArray"])
+
+        except Exception as err:
+
+            # reset the client instance to 'None' in case of timeout exception
+            client = None
+
+            # print pymongo.errors.ServerSelectionTimeoutError
+            print ("MongoClient error:", err)
+
+        if client != None:
+
+            # declare database and collection instances
+            db = client.flaskDb
+            col = db.sample
+
+            for doc in col.find():
+                print ("\n", doc)
+
+                # should return a dict object
+                print (type(doc))
+
+                # nest the document inside of the original dictionary
+                documents["id"] = doc
+
+        # return the nested documents
+        return documents
+
+    def get_app_html(new_html=''):
+
+        # define a string for the HTML
+        html = """
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <title>My first MongoDB Flask web app</title>
+        <h1>ObjectRocket MongoDB App</h1>
+        </head>
+        <br>
+        """
+
+        html += new_html
+
+        html += "<br></body>\n</html>"
+        return html
+
+    # set the routes for the application
+    @mongo_app.route('/')
+    def home_page():
+
+        html = get_app_html()
+
+        return html
+
+    @mongo_app.route("/api/v1/docs/", methods=['GET'])
+    def get_docs():
+
+        # declare string for new HTML
+        new_html = "<h2>MongoDB documents returned:</h2><br>"
+
+        # call the function to get MongoDB documents
+        docs = get_mongo_docs()
+
+        # iterate over the nested dict of docs
+        for k, doc in docs.items():
+
+            # iterate over each document's values
+            for key, values in doc.items():
+
+                # append the doc data to the new HTML
+                new_html += "<h3>Key: " + str(key) + "</h3>"
+                new_html += "<h4>Values: " + str(values) + "</h4><br>"
+
+        # pass the new HTML string to the function call
+        html = get_app_html( new_html )
+
+        return html
+
+    if __name__ == '__main__':
+
+        # run the application
+        mongo_app.run(
+            host = DOMAIN,
+            port = FLASK_PORT
+        )
+
+
+
+$  flask run --host=192.168.100.40
+
+
+Just navigate to http://192.168.100.40:5000/api/v1/docs/ 
+
+
