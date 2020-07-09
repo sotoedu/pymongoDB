@@ -84,6 +84,7 @@ $ curl localhost:27017
 
 It looks like you are trying to access MongoDB over HTTP on the native driver port.
 
+$ mongo
 
 ------------------------------
 
