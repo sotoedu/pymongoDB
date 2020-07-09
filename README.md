@@ -69,13 +69,19 @@ The command shown below can be used to create the /date/db directory and subdire
 $ sudo mkdir -p /data/db && sudo chown pi /data/db
 
 $ sudo nano /etc/mongodb.conf
+
 from
+
 bind_ip = 127.0.0.1 
+
 to
+
 bind_ip = 0.0.0.0.
 
 $ sudo service mongodb restart
+
 $ curl localhost:27017
+
 It looks like you are trying to access MongoDB over HTTP on the native driver port.
 
 
