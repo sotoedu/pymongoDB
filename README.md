@@ -3,7 +3,9 @@ pymongoDB
 
 http://kb.objectrocket.com/mongo-db/using-flask-on-a-raspberry-pi-with-mongodb-part-1-1136#configure+the+raspbian+mongodb+server
 
-$ sudo apt update && sudo apt install python3-pip
+$ sudo apt update 
+
+$ sudo apt install python3-pip
 
 $ pip3 install pymongo
 
@@ -18,19 +20,20 @@ $ sudo apt-get install mongodb
 
 $ sudo apt-get install mongodb-server
 
-Install MongoDB 4.2 on Raspbian Bionic Beaver
-First, you’ll need to get the PGP key for the MongoDB v4.2 repository:
+    Install MongoDB 4.2 on Raspbian Bionic Beaver
+    First, you’ll need to get the PGP key for the MongoDB v4.2 repository:
+
+    $ wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
+    Next, use the echo command to append the repository link and list the file to your Raspbian’s /etc/apt/sources.list.d directory:
 
 
-$ wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
-Next, use the echo command to append the repository link and list the file to your Raspbian’s /etc/apt/sources.list.d directory:
+    $ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
+    Finally, you’ll need to update and install MongoDB from the newly-added Debian repository:
 
+    $ sudo apt-get update 
 
-$ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
-Finally, you’ll need to update and install MongoDB from the newly-added Debian repository:
-
-$ sudo apt-get update && sudo apt-get install mongodb-org
-If you don’t want to build MongoDB from source or install an older version, another option would be to install Docker and run a newer version of MongoDB in a containerized environment on the Raspberry Pi.
+    $ sudo apt-get install mongodb-org
+    If you don’t want to build MongoDB from source or install an older version, another option would be to install Docker and run a newer version of MongoDB in a containerized environment on the Raspberry Pi.
 
 ---------------------------------------------------
 
@@ -66,7 +69,9 @@ After you complete the configuration, execute the mongod command to make sure th
 
 The command shown below can be used to create the /date/db directory and subdirectory. Then, you can grant ownership of the directory to the pi user with the chown command:
 
-$ sudo mkdir -p /data/db && sudo chown pi /data/db
+$ sudo mkdir -p /data/db 
+
+$ sudo chown pi /data/db
 
 $ sudo nano /etc/mongodb.conf
 
@@ -126,7 +131,9 @@ $ python3 pymongoex.py
 
 ---------------------------
 
-$ mkdir flask-mongodb-raspberry && cd flask-mongodb-raspberry
+$ mkdir flask-mongodb-raspberry 
+
+$ cd flask-mongodb-raspberry
 
 $ touch app.py
 
