@@ -38,15 +38,19 @@ $ sudo apt install mongodb-server
 ---------------------------------------------------
 
 Start MongoDB
+
 At this point, you should be able to start the MongoDB service; however, there’s still some configuration that needs to be done. Use the following systemctl command to start the MongoDB service:
 
 $ sudo systemctl start mongodb
+
 You can use the enable option to enable the service so that it starts whenever you boot the Raspberry Pi:
 
 $ sudo systemctl enable mongodb
+
 Finally, use the service command to initialize and set up your MongoDB service by authenticating a user:
 
 $ service mongodb start
+
 After you complete the configuration, execute the mongod command to make sure that the service is running. If you get an error saying: “ERROR: dbpath (/data/db/) does not exist“, you’ll need to set up the MongoDB database path first.
 
 The command shown below can be used to create the /date/db directory and subdirectory. Then, you can grant ownership of the directory to the pi user with the chown command:
