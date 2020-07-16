@@ -55,7 +55,9 @@ After you complete the configuration, execute the mongod command to make sure th
 
 The command shown below can be used to create the /date/db directory and subdirectory. Then, you can grant ownership of the directory to the pi user with the chown command:
 
-$ sudo mkdir -p /data/db && sudo chown pi /data/db
+$ sudo mkdir -p /data/db 
+
+$ sudo chown pi /data/db
 
 -------------------
 
