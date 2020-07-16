@@ -11,14 +11,14 @@ $ pip3 install pymongo
 
 $ pip3 install flask
 
-$ sudo apt-get install nginx
+$ sudo apt install nginx
 
 $ sudo /etc/init.d/nginx start
 (http:\\localhost)
 
-$ sudo apt-get install mongodb
+$ sudo apt install mongodb
 
-$ sudo apt-get install mongodb-server
+$ sudo apt install mongodb-server
 
     Install MongoDB 4.2 on Raspbian Bionic Beaver
     First, you’ll need to get the PGP key for the MongoDB v4.2 repository:
@@ -134,9 +134,11 @@ $ python3 pymongoex.py
 
 ---------------------------
 
-$ mkdir flask-mongodb-raspberry 
+$ cd workspace
 
-$ cd flask-mongodb-raspberry
+$ mkdir myweb
+
+$ cd myweb
 
 $ touch app.py
 
